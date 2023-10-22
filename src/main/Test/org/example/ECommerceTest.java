@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class ShopTest {
+public class ECommerceTest {
     private Product product1;
     private Product product2;
     private Cart cart;

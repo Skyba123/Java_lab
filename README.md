@@ -19,46 +19,46 @@
 **Рекомендований опис класів і інтерфейсів:**
 
 1. Item (Abstract Class)
-Attributes:
-title: String
-uniqueID: String (unique for each item)
-isBorrowed: boolean (default false)
-Methods:
-Constructors, getters, setters
-abstract void borrowItem(): Makes the item as borrowed.
-abstract void returnItem(): Marks the item as not borrowed.
+- Attributes:
+- title: String
+- uniqueID: String (unique for each item)
+- isBorrowed: boolean (default false)
+- Methods:
+- Constructors, getters, setters
+- abstract void borrowItem(): Makes the item as borrowed.
+- abstract void returnItem(): Marks the item as not borrowed.
 2. Book (implements Item)
-Attributes:
-author: String
-Methods:
-borrowItem(): Implements the abstract method from Item.
-returnItem(): Implements the abstract method from Item.
+- Attributes:
+- author: String
+- Methods:
+- borrowItem(): Implements the abstract method from Item.
+- returnItem(): Implements the abstract method from Item.
 3. DVD (implements Item)
-Attributes:
-duration: int (minutes)
-Methods:
-borrowItem(): Implements the abstract method from Item.
-returnItem(): Implements the abstract method from Item.
+- Attributes:
+- duration: int (minutes)
+- Methods:
+- borrowItem(): Implements the abstract method from Item.
+- returnItem(): Implements the abstract method from Item.
 4. Patron
-Attributes:
-name: String
-ID: String (unique for each patron)
-borrowedItems: List<Item>
-Methods:
-Constructors, getters, setters
-borrow(Item): Adds an item to the patron's borrowed list.
-return(Item): Removes an item from the patron's borrowed list.
+- Attributes:
+- name: String
+- ID: String (unique for each patron)
+- borrowedItems: List<Item>
+- Methods:
+- Constructors, getters, setters
+- borrow(Item): Adds an item to the patron's borrowed list.
+- return(Item): Removes an item from the patron's borrowed list.
 5. IManageable (Interface)
-Methods:
-add(Item): Adds an item.
-remove(Item): Removes an item.
-listAvailable(): Lists all available items.
-listBorrowed(): Lists all borrowed items.
+- Methods:
+- add(Item): Adds an item.
+- remove(Item): Removes an item.
+- listAvailable(): Lists all available items.
+- listBorrowed(): Lists all borrowed items.
 6. Library (implements IManageable)
-Attributes:
-items: List<Item> (to store all items)
-patrons: List<Patron> (to store all registered patrons)
-Methods:
-registerPatron(Patron): Registers a new patron.
-lendItem(Patron, Item): Lends an item to a patron.
-returnItem(Patron, Item): Returns a borrowed item.
+- Attributes:
+- items: List<Item> (to store all items)
+- patrons: List<Patron> (to store all registered patrons)
+- Methods:
+- registerPatron(Patron): Registers a new patron.
+- lendItem(Patron, Item): Lends an item to a patron.
+- returnItem(Patron, Item): Returns a borrowed item.

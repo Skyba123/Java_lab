@@ -18,7 +18,7 @@
 
 **Рекомендований опис класів і інтерфейсів:**
 
-Item (Abstract Class)
+1. Item (Abstract Class)
 Attributes:
 title: String
 uniqueID: String (unique for each item)
@@ -27,19 +27,19 @@ Methods:
 Constructors, getters, setters
 abstract void borrowItem(): Makes the item as borrowed.
 abstract void returnItem(): Marks the item as not borrowed.
-Book (implements Item)
+2. Book (implements Item)
 Attributes:
 author: String
 Methods:
 borrowItem(): Implements the abstract method from Item.
 returnItem(): Implements the abstract method from Item.
-DVD (implements Item)
+3. DVD (implements Item)
 Attributes:
 duration: int (minutes)
 Methods:
 borrowItem(): Implements the abstract method from Item.
 returnItem(): Implements the abstract method from Item.
-Patron
+4. Patron
 Attributes:
 name: String
 ID: String (unique for each patron)
@@ -48,13 +48,13 @@ Methods:
 Constructors, getters, setters
 borrow(Item): Adds an item to the patron's borrowed list.
 return(Item): Removes an item from the patron's borrowed list.
-IManageable (Interface)
+5. IManageable (Interface)
 Methods:
 add(Item): Adds an item.
 remove(Item): Removes an item.
 listAvailable(): Lists all available items.
 listBorrowed(): Lists all borrowed items.
-Library (implements IManageable)
+6. Library (implements IManageable)
 Attributes:
 items: List<Item> (to store all items)
 patrons: List<Patron> (to store all registered patrons)

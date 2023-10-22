@@ -11,7 +11,12 @@ public class Library implements IManageable {
         items = new ArrayList<>();
         patrons = new ArrayList<>();
     }
-
+    public List<Patron> getPatrons() {
+        return patrons;
+    }
+    public List<Item> getItems() {
+        return items;
+    }
     public void registerPatron(Patron patron) {
         patrons.add(patron);
     }

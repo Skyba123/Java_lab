@@ -8,6 +8,7 @@ public class PalindromeCheckerTest {
     public void testWithPalindrome() {
         assertTrue(PalindromeChecker.isPalindrome("level"));
         assertTrue(PalindromeChecker.isPalindrome("refer"));
+        assertTrue(PalindromeChecker.isPalindrome("Madam i'm Adam"));
     }
 
     @Test

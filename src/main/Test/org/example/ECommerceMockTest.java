@@ -1,22 +1,17 @@
-package org.example.java;
+package org.example;
 
-import org.example.Cart;
-import org.example.Order;
-import org.example.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
 
-public class ECommerceTestMock {
+public class ECommerceMockTest {
 
     @Mock
     private Product product1;

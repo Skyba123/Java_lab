@@ -2,48 +2,73 @@ package org.example;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class ECommerceTest {
+    @Mock
     private Product product1;
+
+    @Mock
     private Product product2;
-    private Cart cart;
-    private Order order;
 
     @Before
     public void setUp() {
-        product1 = new Product(1, "Product 1", 10.0);
-        product2 = new Product(2, "Product 2", 20.0);
-        cart = new Cart();
-        order = new Order(1, new ArrayList<>(), "Waiting");
+        MockitoAnnotations.initMocks(this);
+
+        // Define the behavior of mock products
+        when(product1.getId()).thenReturn(1);
+        when(product1.getName()).thenReturn("Product 1");
+        when(product1.getPrice()).thenReturn(10.0);
+
+        when(product2.getId()).thenReturn(2);
+        when(product2.getName()).thenReturn("Product 2");
+        when(product2.getPrice()).thenReturn(20.0);
     }
 
     @Test
-    public void testAddProduct() {
-        cart.addProduct(product1);
-        assertTrue(cart.getProducts().contains(product1));
-    }
-
-    @Test
-    public void testRemoveProduct() {
-        cart.addProduct(product1);
-        cart.removeProduct(product1);
-        assertFalse(cart.getProducts().contains(product1));
-    }
-
-    @Test
-    public void testPlaceOrder() {
+    public void testAddProductToCart() {
+        Cart cart = new Cart();
         cart.addProduct(product1);
         cart.addProduct(product2);
-        order = new Order(1, new ArrayList<>(cart.getProducts()), "Waiting");
-        assertEquals("Waiting", order.getStatus());
+        List<Product> productsInCart = cart.getProducts();
+        assertEquals(2, productsInCart.size());
+        assertTrue(productsInCart.contains(product1));
+        assertTrue(productsInCart.contains(product2));
+    }
+
+    @Test
+    public void testRemoveProductFromCart() {
+        Cart cart = new Cart();
+        cart.addProduct(product1);
+        cart.addProduct(product2);
+
+        cart.removeProduct(product1);
+
+        List<Product> productsInCart = cart.getProducts();
+        assertEquals(1, productsInCart.size());
+        assertFalse(productsInCart.contains(product1));
+        assertTrue(productsInCart.contains(product2));
     }
 
     @Test
     public void testOrderStatus() {
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+
+        Order order = new Order(1, products, "Waiting");
+        assertEquals(1, order.getOrderId());
+        assertEquals(products, order.getProducts());
+        assertEquals("Waiting", order.getStatus());
+
+        // Change order status and verify
         order.setStatus("Done");
         assertEquals("Done", order.getStatus());
     }

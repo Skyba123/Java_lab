@@ -1,3 +1,5 @@
+package org.example.java;
+
 import org.example.Cart;
 import org.example.Order;
 import org.example.Product;

@@ -2,28 +2,71 @@ package org.example;
 
 import static org.junit.Assert.*;
 
+import org.example.Book;
+import org.example.Library;
+import org.junit.Before;
+import org.junit.Test;
+
+
+
 public class LibraryManagementTest {
-    public static void main(String[] args) {
-        Library library = new Library();
+    private Library library;
 
-        library.addBook(new Book("Metro 2033", "D. A. Glukhovsky", "978-966-10-6112-4", 2002));
-        library.addBook(new Book("Adventures of Sherlock Holmes", "Arthur Conan Doyle", "978-617-7025-69-5", 1892));
-        library.addBook(new Book("Harry Potter", "Joan Rowling", "978-966-7047-39-9", 1997));
+    @Before
+    public void setUp() {
+        library = new Library();
+    }
 
-        library.showAllBooks();
+    @Test
+    public void testAddBook() {
+        Book book = new Book("Test Book", "Test Author", "1234567890", 2023);
+        library.addBook(book);
+        assertEquals(1, library.getBooks().size());
+    }
 
+    @Test
+    public void testFindBookByTitle() {
+        Book book1 = new Book("Test Book 1", "Test Author 1", "1111111111", 2023);
+        Book book2 = new Book("Test Book 2", "Test Author 2", "2222222222", 2023);
+        library.addBook(book1);
+        library.addBook(book2);
 
-        String searchTitle = "Metro 2033";
-        Book foundBook = library.findBookByTitle(searchTitle);
-        if (foundBook != null) {
-            System.out.println("Found book: " + foundBook);
-        } else {
-            System.out.println("Book with title '" + searchTitle + "' not found in the library.");
-        }
+        Book foundBook = library.findBookByTitle("Test Book 1");
+        assertNotNull(foundBook);
+        assertEquals("Test Book 1", foundBook.getTitle());
+    }
 
-        String isbnToRemove = "978-617-7025-69-5";
+    @Test
+    public void testFindBookByTitleNotFound() {
+        Book book1 = new Book("Test Book 1", "Test Author 1", "1111111111", 2023);
+        library.addBook(book1);
+
+        Book foundBook = library.findBookByTitle("Non-existent Book");
+        assertNull(foundBook);
+    }
+
+    @Test
+    public void testRemoveBookByIsbn() {
+        Book book1 = new Book("Test Book 1", "Test Author 1", "1111111111", 2023);
+        Book book2 = new Book("Test Book 2", "Test Author 2", "2222222222", 2023);
+        library.addBook(book1);
+        library.addBook(book2);
+
+        String isbnToRemove = "1111111111";
         library.removeBookByIsbn(isbnToRemove);
 
-        library.showAllBooks();
+        assertNull(library.findBookByTitle("Test Book 1"));
+        assertNotNull(library.findBookByTitle("Test Book 2"));
+    }
+
+    @Test
+    public void testRemoveBookByIsbnNotFound() {
+        Book book1 = new Book("Test Book 1", "Test Author 1", "1111111111", 2023);
+        library.addBook(book1);
+
+        String isbnToRemove = "2222222222";
+        library.removeBookByIsbn(isbnToRemove);
+
+        assertNotNull(library.findBookByTitle("Test Book 1"));
     }
 }

@@ -13,6 +13,6 @@ public class Main {
        cinema.printSeatingArrangement(1);
         // Перевірка наявності місць
         boolean isAvailable = cinema.checkAvailability(1,3, 8);
-        System.out.println("Availability: " + isAvailable);
+
   }
 }

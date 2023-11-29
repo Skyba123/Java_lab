@@ -54,4 +54,15 @@ public class Decoder {
                 return (char) ('a' + number - 1);
         }
     }
+
+    public static void main(String[] args) {
+        String input1 = "t2st3ng";
+        String input2 = "gekko";
+
+        String result1 = replaceDigits(input1);
+        System.out.println("Заміна цифр на голосні: " + result1);
+
+        String result2 = replaceConsonants(input2);
+        System.out.println("Заміна приголосних на наступні приголосні: " + result2);
+    }
 }

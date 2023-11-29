@@ -41,7 +41,7 @@ NegativeAmountException, AccountNotFoundException.
 - Метод "createAccount" (accountName, initialDeposit) - створенний для створення акаунту у банківській системі.
 - Метод "findAccount" (accountNumber) - пошук банківських рахунків
 - Метод transferMoney( fromAccountNumber, toAccountNumber, amount) - транзакція грошей. Викликає методи findAccount, withdraw, deposit.
-Оглянемо клас BankAccount.
+<br>Оглянемо клас BankAccount.
 - Поля "accountNumber" , "accountNumber" . "balance".
 - Конструктор "BankAccount" - створення нового об'єкту.
 - Методи deposit(double amount) , withdraw(double amount).

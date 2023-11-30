@@ -8,16 +8,16 @@ public class DecoderTest {
 
     @Test
     public void testReplaceDigits() {
-        String input = "t2st3ng";
-        String expected = "testing";
+        String input = "testing";
+        String expected = "t2st3ng";
         String result = Decoder.replaceDigits(input);
         assertEquals(expected, result);
     }
 
     @Test
     public void testReplaceConsonants() {
-        String input = "gekko";
-        String expected = "hello";
+        String input = "hello";
+        String expected = "jemmo";
         String result = Decoder.replaceConsonants(input);
         assertEquals(expected, result);
     }

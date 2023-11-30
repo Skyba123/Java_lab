@@ -5,14 +5,19 @@ public class Decoder {
     public static String replaceDigits(String input) {
         StringBuilder result = new StringBuilder();
         for (char c : input.toCharArray()) {
-            if (Character.isDigit(c)) {
-                result.append(getVowelForNumber(Character.getNumericValue(c)));
+            if (Character.isLetter(c)) {
+                if (isVowel(c)) {
+                    result.append(getNumberForVowel(c));
+                } else {
+                    result.append(c);
+                }
             } else {
                 result.append(c);
             }
         }
         return result.toString();
     }
+
     public static String replaceConsonants(String input) {
         StringBuilder result = new StringBuilder();
 
@@ -27,6 +32,28 @@ public class Decoder {
         return result.toString();
     }
 
+    private static boolean isVowel(char c) {
+        return "aeiouAEIOU".indexOf(c) != -1;
+    }
+
+    private static int getNumberForVowel(char vowel) {
+        switch (Character.toLowerCase(vowel)) {
+            case 'a':
+                return 1;
+            case 'e':
+                return 2;
+            case 'i':
+                return 3;
+            case 'o':
+                return 4;
+            case 'u':
+                return 5;
+            default:
+                // In case it's not a recognized vowel, return 0 or handle it as needed.
+                return 0;
+        }
+    }
+
     private static boolean isConsonant(char c) {
         return "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ".indexOf(c) != -1;
     }
@@ -38,29 +65,12 @@ public class Decoder {
         return consonants.charAt(nextIndex);
     }
 
-    private static char getVowelForNumber(int number) {
-        switch (number) {
-            case 1:
-                return 'a';
-            case 2:
-                return 'e';
-            case 3:
-                return 'i';
-            case 4:
-                return 'o';
-            case 5:
-                return 'u';
-            default:
-                return (char) ('a' + number - 1);
-        }
-    }
-
     public static void main(String[] args) {
-        String input1 = "t2st3ng";
-        String input2 = "gekko";
+        String input1 = "testing";
+        String input2 = "hello";
 
         String result1 = replaceDigits(input1);
-        System.out.println("Заміна цифр на голосні: " + result1);
+        System.out.println("Заміна голосних на числа: " + result1);
 
         String result2 = replaceConsonants(input2);
         System.out.println("Заміна приголосних на наступні приголосні: " + result2);
